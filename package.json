@@ -1,0 +1,15 @@
+{
+  "name": "savor-workspace",
+  "private": true,
+  "workspaces": [
+    "app"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=l-art-du-savoir-vivre",
+    "build": "npm run build --workspace=l-art-du-savoir-vivre",
+    "lint": "npm run lint --workspace=l-art-du-savoir-vivre",
+    "typecheck": "npm run typecheck --workspace=l-art-du-savoir-vivre",
+    "preview": "npm run preview --workspace=l-art-du-savoir-vivre",
+    "test": "npm run test --workspace=l-art-du-savoir-vivre"
+  }
+}
