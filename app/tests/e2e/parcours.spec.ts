@@ -299,7 +299,7 @@ for (const [route, theme] of [['/', 'light'], ['/lecons/l-4-1-2', 'light'], ['/l
     }
     await page.goto(`/#${route}`);
     await page.waitForTimeout(600);
-    const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+    const results = await new AxeBuilder({ page: page as unknown as ConstructorParameters<typeof AxeBuilder>[0]['page'] }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
     const summary = results.violations.map((v) => `${v.id} (${v.nodes.length}) : ${v.nodes.slice(0, 2).map((n) => n.target.join(' ')).join(' | ')}`);
     expect(summary).toEqual([]);
   });

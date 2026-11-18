@@ -41,7 +41,7 @@ test.describe('page de présentation', () => {
   test('respecte les critères WCAG contrôlés par axe', async ({ page }) => {
     await page.goto('/decouvrir/');
     for (const details of await page.locator('details').all()) await details.locator('summary').click();
-    const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+    const results = await new AxeBuilder({ page: page as unknown as ConstructorParameters<typeof AxeBuilder>[0]['page'] }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
     expect(results.violations.map((v) => `${v.id} : ${v.nodes.slice(0, 2).map((n) => n.target.join(' ')).join(' | ')}`)).toEqual([]);
   });
 
