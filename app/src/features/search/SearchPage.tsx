@@ -31,19 +31,19 @@ export default function SearchPage() {
       <PageHead eyebrow="Recherche" title="Que cherchez-vous ?" lead="Leçons, règles, fiches, situations, définitions et pays. La recherche fonctionne aussi hors ligne." />
       <label className="stack gap-xs">
         <span className="sr-only">Rechercher dans toute l’application</span>
-        <span className="search-box"><MagnifyingGlass aria-hidden="true" /><input ref={inputRef} className="input" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Tutoiement, condoléances, Japon…" /></span>
+        <span className="search-box"><MagnifyingGlass aria-hidden="true" /><input ref={inputRef} data-demo-id="search-input" className="input" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Tutoiement, condoléances, Japon…" /></span>
       </label>
       <div role="group" aria-label="Filtrer par type" className="row" style={{ gap: '.5rem' }}>
-        {KINDS.map(([k, label]) => <button key={k} type="button" className="chip" aria-pressed={kind === k} onClick={() => setKind(k)}>{label}</button>)}
+        {KINDS.map(([k, label]) => <button key={k} type="button" data-demo-id={`search-kind-${k}`} className="chip" aria-pressed={kind === k} onClick={() => setKind(k)}>{label}</button>)}
       </div>
       {query.trim() && <p className="small muted" role="status">{plural(results.length, 'résultat')}</p>}
       {query.trim() && results.length === 0 && (
         <Empty title="Aucun résultat."><p>Essayez un terme plus général, ou vérifiez l’orthographe. Les accents sont facultatifs.</p></Empty>
       )}
-      <ul>
+      <ul data-demo-id="search-results">
         {results.map((r) => (
           <li key={`${r.kind}-${r.id}`}>
-            <Link className="result-item" to={r.to}>
+            <Link className="result-item" data-demo-id={`search-result-${r.kind}-${r.id}`} to={r.to}>
               <span className="eyebrow" style={{ letterSpacing: '.1em' }}>{r.meta}</span>
               <span className="result-title">{r.title}</span>
               <span className="small">{r.excerpt.length > 180 ? `${r.excerpt.slice(0, 180)}…` : r.excerpt}</span>

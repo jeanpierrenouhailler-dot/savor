@@ -8,3 +8,15 @@ coverage/
 .wrangler/
 .env*
 .DS_Store
+
+# video-studio — fichiers générés
+app/video/audio/
+app/video/cache/
+app/video/recordings/
+app/video/build/
+app/video/output/
+video/audio/
+video/cache/
+video/recordings/
+video/build/
+video/output/

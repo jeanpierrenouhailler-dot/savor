@@ -72,7 +72,7 @@ export default function LessonPage() {
           <div className="row">
             <LevelBadge level={lesson.level} />
             <span className="small muted row" style={{ gap: '.375rem' }}><Clock aria-hidden="true" />{lesson.estimatedDuration} min de lecture</span>
-            <span style={{ marginLeft: 'auto' }}><FavButton type="lesson" id={lesson.id} title={lesson.title} withLabel /></span>
+            <span style={{ marginLeft: 'auto' }}><FavButton type="lesson" id={lesson.id} title={lesson.title} withLabel demoId="lesson-fav" /></span>
           </div>
         </header>
 
@@ -98,7 +98,7 @@ export default function LessonPage() {
           ))}
         </section>
 
-        <section id="sec-regles" className="stack gap-m scroll-anchor">
+        <section id="sec-regles" className="stack gap-m scroll-anchor" data-demo-id="lesson-rules">
           <h2 className="h2">Les règles essentielles</h2>
           <ol className="stack">
             {lesson.rules.map((r, i) => (
@@ -107,7 +107,7 @@ export default function LessonPage() {
                 <div className="stack gap-xs" style={{ flex: 1, minWidth: 0 }}>
                   <div className="row" style={{ justifyContent: 'space-between', flexWrap: 'nowrap', alignItems: 'flex-start' }}>
                     <strong className="rule-title">{r.title}</strong>
-                    <FavButton type="rule" id={r.id} title={r.title} />
+                    <FavButton type="rule" id={r.id} title={r.title} demoId={`rule-fav-${r.id}`} />
                   </div>
                   <span>{r.description}</span>
                   <span className="row" style={{ gap: '.375rem' }}>
@@ -115,7 +115,7 @@ export default function LessonPage() {
                     <span className="tag">{NORMATIVITY_LABEL[r.normativity]}</span>
                   </span>
                   <details className="rule-details" open={expand}>
-                    <summary>Comprendre et appliquer</summary>
+                    <summary data-demo-id={`rule-details-${r.id}`}>Comprendre et appliquer</summary>
                     <dl className="rule-dl">
                       <div><dt>Pourquoi</dt><dd>{r.rationale}</dd></div>
                       <div><dt>Quand</dt><dd>{r.context}</dd></div>
@@ -162,7 +162,7 @@ export default function LessonPage() {
           </div>
         </section>
 
-        <section id="sec-nuances" className="stack gap-m scroll-anchor">
+        <section id="sec-nuances" className="stack gap-m scroll-anchor" data-demo-id="lesson-nuances">
           <h2 className="h2">Nuances et exceptions</h2>
           {lesson.nuances.map((n, i) => (
             <div key={i} className="nuance">
@@ -196,7 +196,7 @@ export default function LessonPage() {
           <p className="h3">{lesson.quiz.questions.length} questions, chacune expliquée</p>
           {progress?.bestScore !== undefined && <p className="small">Meilleur résultat : {progress.bestScore} % en {progress.attempts} essai{progress.attempts > 1 ? 's' : ''}.</p>}
           <div className="row">
-            <Link className="btn btn-primary" to={`/lecons/${lesson.id}/quiz`}><SealQuestion aria-hidden="true" />Lancer le quiz</Link>
+            <Link className="btn btn-primary" data-demo-id="lesson-start-quiz" to={`/lecons/${lesson.id}/quiz`}><SealQuestion aria-hidden="true" />Lancer le quiz</Link>
             <Link className="btn btn-secondary" to={`/revisions?lecon=${lesson.id}`}><ArrowCounterClockwise aria-hidden="true" />Réviser</Link>
           </div>
         </section>
@@ -226,6 +226,7 @@ export default function LessonPage() {
         <div className="row">
           <button
             type="button"
+            data-demo-id="lesson-complete"
             className={`btn ${completed ? 'btn-secondary' : 'btn-primary'}`}
             aria-pressed={completed}
             onClick={() => {

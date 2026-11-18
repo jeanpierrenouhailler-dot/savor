@@ -22,7 +22,7 @@ export default function DictionaryPage() {
       <label className="stack gap-xs"><span className="field-label">Chercher un terme</span>
         <input className="input" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Tact, préséance…" />
       </label>
-      <nav aria-label="Index alphabétique" className="alpha-nav">
+      <nav aria-label="Index alphabétique" className="alpha-nav" data-demo-id="dict-alpha">
         {letters.map((l) => <button key={l} type="button" className="btn-link" style={{ minWidth: '2.25rem', justifyContent: 'center', fontFamily: 'var(--serif)', fontSize: '1.125rem' }} onClick={() => jump(l)}>{l}</button>)}
       </nav>
       <p className="small muted" role="status">{plural(rows.length, 'entrée')}</p>
@@ -33,7 +33,7 @@ export default function DictionaryPage() {
           <ul>
             {rows.filter((e) => letterOf(e.term) === letter).map((e) => (
               <li key={e.id}>
-                <Link to={`/dictionnaire/${e.id}`} className="result-item">
+                <Link to={`/dictionnaire/${e.id}`} data-demo-id={`dict-entry-${e.id}`} className="result-item">
                   <span className="result-title">{e.term}</span>
                   <span className="small">{e.definition}</span>
                 </Link>

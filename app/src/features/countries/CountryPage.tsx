@@ -35,9 +35,9 @@ export default function CountryPage() {
           <h1 className="display" style={{ fontSize: 'clamp(3rem, 7vw, 5.25rem)', lineHeight: .95 }}>{c.name}</h1>
           <p className="lead">{c.intro}</p>
           <p className="small muted">Langues principales : {c.languages.join(', ')}</p>
-          <div><FavButton type="country" id={c.id} title={c.name} withLabel /></div>
+          <div><FavButton type="country" id={c.id} title={c.name} withLabel demoId="country-fav" /></div>
         </div>
-        <dl style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '1rem 1.5rem' }}>
+        <dl data-demo-id="country-highlights" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '1rem 1.5rem' }}>
           {c.highlights.map((h) => (
             <div key={h.label}>
               <dt className="eyebrow muted" style={{ letterSpacing: '.08em' }}>{h.label}</dt>
@@ -47,7 +47,7 @@ export default function CountryPage() {
         </dl>
       </header>
 
-      <div className="nuance card-cream" style={{ flexDirection: 'row' }}>
+      <div className="nuance card-cream" data-demo-id="country-limits" style={{ flexDirection: 'row' }}>
         <WarningCircle size={22} aria-hidden="true" />
         <p><strong style={{ color: 'var(--ink)' }}>Limites de cette fiche.</strong> {c.generalizationNote}</p>
       </div>
@@ -68,7 +68,7 @@ export default function CountryPage() {
       </div>
 
       {c.phrases.length > 0 && (
-        <section className="stack gap-m narrow">
+        <section className="stack gap-m narrow" data-demo-id="country-phrases">
           <h2 className="h2">Phrases utiles</h2>
           <div className="stack">
             {c.phrases.map((p) => (

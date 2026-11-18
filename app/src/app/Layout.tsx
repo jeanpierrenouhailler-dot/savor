@@ -58,11 +58,11 @@ export function Layout() {
       <a className="skip-link" href="#contenu" onClick={(e) => { e.preventDefault(); mainRef.current?.focus(); }}>Aller au contenu</a>
       <div className="main">
         <header className="topbar">
-          <button ref={menuButton} type="button" className="btn-icon" aria-label="Ouvrir le menu" aria-haspopup="dialog" aria-expanded={menu} onClick={() => navigate({ pathname, search, hash }, { state: { menu: true } })}>
+          <button ref={menuButton} type="button" className="btn-icon" data-demo-id="topbar-menu" aria-label="Ouvrir le menu" aria-haspopup="dialog" aria-expanded={menu} onClick={() => navigate({ pathname, search, hash }, { state: { menu: true } })}>
             <List size={22} aria-hidden="true" />
           </button>
-          <Link to="/" className="topbar-brand"><Logo size={30} /><span>L’Art du <em>Savoir-Vivre</em></span></Link>
-          <button type="button" className="btn-icon topbar-search" aria-label="Rechercher" onClick={() => navigate('/recherche')}>
+          <Link to="/" className="topbar-brand" data-demo-id="topbar-brand"><Logo size={30} /><span>L’Art du <em>Savoir-Vivre</em></span></Link>
+          <button type="button" className="btn-icon topbar-search" data-demo-id="topbar-search" aria-label="Rechercher" onClick={() => navigate('/recherche')}>
             <MagnifyingGlass size={20} aria-hidden="true" />
           </button>
         </header>
@@ -91,7 +91,7 @@ export function Layout() {
       </div>
       <nav aria-label="Raccourcis" className="bottom-nav">
         {SHORTCUTS.map((m) => (
-          <NavLink key={m.to} to={m.to} end={m.end} className={({ isActive }) => `bottom-item${isActive ? ' active' : ''}`}>
+          <NavLink key={m.to} to={m.to} end={m.end} data-demo-id={`nav-${m.to === '/' ? 'accueil' : m.to.slice(1)}`} className={({ isActive }) => `bottom-item${isActive ? ' active' : ''}`}>
             <m.icon size={21} aria-hidden="true" />{m.label}
           </NavLink>
         ))}

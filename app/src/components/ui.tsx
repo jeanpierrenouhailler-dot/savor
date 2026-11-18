@@ -92,7 +92,7 @@ export function Verdict({ kind }: { kind: VerdictKind }) {
   return <span className={`verdict ${kind}`}><I size={14} aria-hidden="true" />{label}</span>;
 }
 
-export function FavButton({ type, id, title, withLabel = false }: { type: FavoriteType; id: string; title: string; withLabel?: boolean }) {
+export function FavButton({ type, id, title, withLabel = false, demoId }: { type: FavoriteType; id: string; title: string; withLabel?: boolean; demoId?: string }) {
   const { isFavorite, toggleFavorite } = useUser();
   const toast = useToast();
   const on = isFavorite(type, id);
@@ -103,7 +103,7 @@ export function FavButton({ type, id, title, withLabel = false }: { type: Favori
   };
   if (withLabel) {
     return (
-      <button type="button" className="btn-tool" aria-pressed={on} onClick={onClick}>
+      <button type="button" className="btn-tool" data-demo-id={demoId} aria-pressed={on} onClick={onClick}>
         <BookmarkSimple size={18} weight={on ? 'fill' : 'regular'} aria-hidden="true" />
         {on ? 'Dans vos favoris' : 'Ajouter aux favoris'}
         <span className="sr-only"> : {title}</span>
@@ -111,7 +111,7 @@ export function FavButton({ type, id, title, withLabel = false }: { type: Favori
     );
   }
   return (
-    <button type="button" className="btn-icon" aria-pressed={on} aria-label={label} onClick={onClick}>
+    <button type="button" className="btn-icon" data-demo-id={demoId} aria-pressed={on} aria-label={label} onClick={onClick}>
       <BookmarkSimple size={20} weight={on ? 'fill' : 'regular'} aria-hidden="true" />
     </button>
   );

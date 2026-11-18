@@ -58,7 +58,7 @@ export default function QuizPage() {
         )}
         actions={
           <>
-            <Link className="btn btn-secondary" to={`/lecons/${lesson.id}`}>Relire la leçon</Link>
+            <Link className="btn btn-secondary" data-demo-id="quiz-back-lesson" to={`/lecons/${lesson.id}`}>Relire la leçon</Link>
             {next && <Link className="btn btn-primary" to={`/lecons/${next.id}`}>Leçon suivante</Link>}
           </>
         }

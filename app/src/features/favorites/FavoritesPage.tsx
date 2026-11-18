@@ -75,7 +75,7 @@ export default function FavoritesPage() {
   return (
     <div className="stack gap-xl" style={{ maxWidth: '53.75rem' }}>
       <PageHead eyebrow="Favoris" title="Vos pages marquées" lead="Ce que vous avez gardé sous la main. Tout reste disponible hors ligne." />
-      <div role="group" aria-label="Filtrer les favoris" className="row" style={{ gap: '.5rem' }}>
+      <div role="group" aria-label="Filtrer les favoris" className="row" data-demo-id="favorites-filters" style={{ gap: '.5rem' }}>
         {FILTERS.map(([k, label]) => <button key={k} type="button" className="chip" aria-pressed={filter === k} onClick={() => setFilter(k)}>{label}<span>{count(k)}</span></button>)}
       </div>
       {items.length === 0 && (
@@ -83,7 +83,7 @@ export default function FavoritesPage() {
           <p>Touchez le signet en haut d’une leçon, d’une règle, d’une situation, d’une fiche ou d’une définition pour la retrouver ici.</p>
         </Empty>
       )}
-      <ul className="stack">
+      <ul className="stack" data-demo-id="favorites-list">
         {items.map((f) => {
           const r = resolve(f.targetType, f.targetId);
           const [typeLabel, I] = TYPE[f.targetType];

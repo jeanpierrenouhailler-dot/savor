@@ -35,7 +35,7 @@ export default function HomePage() {
 
       <div className="grid-2">
         {last ? (
-          <article className="card card-lg card-raised">
+          <article className="card card-lg card-raised" data-demo-id="home-resume-card">
             <div className="row-between">
               <div className="eyebrow">Reprendre là où vous étiez</div>
               <LevelBadge level={last.lesson.level} />
@@ -54,7 +54,7 @@ export default function HomePage() {
             <div><Link className="btn btn-primary" to={`/lecons/${last.lesson.id}`}>Reprendre la leçon<ArrowRight aria-hidden="true" /></Link></div>
           </article>
         ) : (
-          <article className="card card-lg card-raised">
+          <article className="card card-lg card-raised" data-demo-id="home-start-card">
             <div className="eyebrow">Pour commencer</div>
             <h2 className="h2-sm" style={{ fontWeight: 600 }}>Un ouvrage à parcourir à votre rythme</h2>
             <p>Huit domaines, trois niveaux, aucun ordre imposé. Commencez par la présentation de l’ouvrage, ou mesurez d’abord où vous en êtes.</p>
@@ -65,7 +65,7 @@ export default function HomePage() {
           </article>
         )}
         {challenge ? (
-          <article className="card-cream">
+          <article className="card-cream" data-demo-id="home-challenge-card">
             <div className="row-between">
               <div className="eyebrow sage">Défi du jour</div>
               <span className="small row" style={{ gap: '.375rem' }}><Clock aria-hidden="true" />{challenge.estimatedDuration} min</span>
@@ -88,7 +88,7 @@ export default function HomePage() {
         )}
       </div>
 
-      <section className="grid-2" style={{ alignItems: 'start' }} aria-label="Votre parcours">
+      <section className="grid-2" style={{ alignItems: 'start' }} aria-label="Votre parcours" data-demo-id="home-progress">
         <div className="stack gap-s">
           <div className="eyebrow">Votre parcours</div>
           <div className="big-number">{global.percent} %</div>
@@ -154,7 +154,7 @@ export default function HomePage() {
           {domains.map((d) => {
             const p = domainProgress(data, d.id);
             return (
-              <Link key={d.id} to={`/apprendre/${d.slug}`} className="card-link">
+              <Link key={d.id} to={`/apprendre/${d.slug}`} className="card-link" data-demo-id={`home-domain-${d.slug}`}>
                 <div className="row-between" style={{ width: '100%' }}>
                   <span className="card-num">0{d.number}</span>
                   <span style={{ color: 'var(--ink)' }}><DomainIcon name={d.icon} /></span>

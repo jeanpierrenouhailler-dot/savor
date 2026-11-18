@@ -42,7 +42,7 @@ export function QuizRunner({ questions, onFinish, onRestart, summary, actions }:
   if (outcome) {
     return (
       <section className="stack" style={{ gap: '2rem' }} aria-label="Résultats">
-        <div className="row" style={{ alignItems: 'flex-end', gap: '1rem 2rem' }}>
+        <div className="row" data-demo-id="quiz-summary" style={{ alignItems: 'flex-end', gap: '1rem 2rem' }}>
           <div className="score-big">{Math.round(outcome.score * 10) / 10}<small> / {outcome.total}</small></div>
           <div className="stack gap-xs" style={{ flex: 1, minWidth: '15rem' }}>{summary?.(outcome)}</div>
         </div>
@@ -163,7 +163,7 @@ export function QuizRunner({ questions, onFinish, onRestart, summary, actions }:
             } else cls += ' dim';
           }
           return (
-            <button key={c} type="button" role={isMulti ? 'checkbox' : 'radio'} aria-checked={sel} disabled={checked} className={cls} onClick={() => toggle(c)}>
+            <button key={c} type="button" data-demo-id={`quiz-choice-${q.id}-${c}`} role={isMulti ? 'checkbox' : 'radio'} aria-checked={sel} disabled={checked} className={cls} onClick={() => toggle(c)}>
               <span className="choice-letter" aria-hidden="true">{LETTERS[pos]}</span>
               <span className="choice-body"><span>{q.choices[c]}</span>{mark}</span>
             </button>
@@ -171,7 +171,7 @@ export function QuizRunner({ questions, onFinish, onRestart, summary, actions }:
         })}
       </div>
       {checked && (
-        <div className="feedback" aria-live="polite">
+        <div className="feedback" data-demo-id="quiz-feedback" aria-live="polite">
           <div className={`feedback-title ${credit >= 1 ? 'ok' : credit > 0 ? '' : 'ko'}`}>
             {credit >= 1 ? <CheckCircle size={20} weight="fill" aria-hidden="true" /> : credit > 0 ? <Minus size={20} aria-hidden="true" /> : <XCircle size={20} weight="fill" aria-hidden="true" />}
             {credit >= 1 ? 'Juste.' : credit > 0 ? 'Acceptable, mais on peut faire mieux.' : 'Pas tout à fait.'}
@@ -182,9 +182,9 @@ export function QuizRunner({ questions, onFinish, onRestart, summary, actions }:
       )}
       <div className="row" style={{ justifyContent: 'flex-end' }}>
         {!checked ? (
-          <button type="button" className="btn btn-primary" disabled={picked.length === 0} onClick={() => setChecked(true)}>Valider ma réponse</button>
+          <button type="button" className="btn btn-primary" data-demo-id="quiz-validate" disabled={picked.length === 0} onClick={() => setChecked(true)}>Valider ma réponse</button>
         ) : (
-          <button type="button" className="btn btn-primary" onClick={next}>{isLast ? 'Voir la correction' : 'Question suivante'}<ArrowRight aria-hidden="true" /></button>
+          <button type="button" className="btn btn-primary" data-demo-id="quiz-next" onClick={next}>{isLast ? 'Voir la correction' : 'Question suivante'}<ArrowRight aria-hidden="true" /></button>
         )}
       </div>
     </section>

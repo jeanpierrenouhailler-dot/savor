@@ -45,7 +45,7 @@ export default function DomainPage() {
           const lp = domainProgress(data, domain.id, lv.level);
           const evalResult = data.evaluations[`${domain.id}:${lv.level}:final`];
           return (
-            <section key={lv.level} className="level-card" aria-labelledby={`lv-${lv.level}`}>
+            <section key={lv.level} className="level-card" data-demo-id={`domain-level-${lv.level}`} aria-labelledby={`lv-${lv.level}`}>
               <div className="level-head">
                 <LevelBadge level={lv.level} />
                 <h2 id={`lv-${lv.level}`} className="level-title">{lv.title}</h2>
@@ -71,7 +71,7 @@ export default function DomainPage() {
                   const st = lessonStatus(data, l.id);
                   return (
                     <li key={l.id}>
-                      <Link className="lesson-item" to={`/lecons/${l.id}`}>
+                      <Link className="lesson-item" data-demo-id={`domain-lesson-${l.id}`} to={`/lecons/${l.id}`}>
                         <StatusIcon status={st} />
                         <span className="stack" style={{ gap: '.125rem' }}>
                           <span className="lesson-item-title">{l.title}</span>

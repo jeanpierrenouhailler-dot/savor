@@ -19,7 +19,7 @@ export default function GuidePage() {
   return (
     <div className="stack gap-xl">
       <PageHead eyebrow="Guide du savoir-vivre" title="Une réponse, tout de suite." lead="Les fiches pratiques répondent à une question précise, sans parcours à suivre. Elles restent consultables quel que soit votre niveau." />
-      <Link className="banner-link" to="/dictionnaire">
+      <Link className="banner-link" data-demo-id="guide-dict-link" to="/dictionnaire">
         <BookBookmark size={28} style={{ color: 'var(--gold-deep)', flex: 'none' }} aria-hidden="true" />
         <span className="stack" style={{ flex: 1, gap: '.125rem' }}>
           <span className="eyebrow">Les mots</span>
@@ -42,7 +42,7 @@ export default function GuidePage() {
       {rows.length === 0 && <Empty title="Aucune fiche ne correspond." />}
       <div className="grid-wide">
         {rows.map((s) => (
-          <Link key={s.id} to={`/guide/${s.id}`} className="card-link">
+          <Link key={s.id} to={`/guide/${s.id}`} data-demo-id={`sheet-card-${s.id}`} className="card-link">
             <span className="xsmall muted">{getDomain(s.domainId)?.shortTitle}</span>
             <span className="card-title">{s.title}</span>
           </Link>

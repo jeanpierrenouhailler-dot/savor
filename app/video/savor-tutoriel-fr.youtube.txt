@@ -1,0 +1,25 @@
+Apprenez à maîtriser Savor (L’Art du Savoir-Vivre), l’encyclopédie interactive qui explique les usages et leurs raisons, sans raideur ni jugement. Ce tutoriel complet de prise en main vous guide pas à pas à travers chaque outil de l’application, du premier lancement jusqu’à l’installation hors ligne.
+
+Au fil de cette visite guidée, vous découvrez comment ouvrir une leçon nuancée et déplier ses exceptions, répondre à un quiz avec correction immédiate, pratiquer une situation ramifiée à choix multiples, trouver une réponse directe grâce à la recherche et au guide pratique, explorer le dictionnaire et les fiches pays, puis retrouver vos révisions espacées et vos favoris dans votre carnet personnel — le tout sans compte ni connexion requise.
+
+Fonctionnalités présentées :
+• 8 domaines et 158 leçons organisées en trois niveaux libres d’accès
+• Règles détaillées (statut, pourquoi, quand, exceptions et nuances)
+• Quiz expliqués avec suivi des questions manquées et bilan complet
+• 32 situations pratiques ramifiées en plusieurs étapes et défi du jour
+• Recherche globale filtrable, fiches pratiques, dictionnaire (64 définitions) et 12 fiches pays
+• Carnet de progression, répétition espacée et favoris stockés localement
+• Thème papier clair ou sombre, personnalisation de la lecture, export JSON et installation PWA hors ligne
+
+Accéder à l’application :
+[Lien vers l’application]
+
+Chapitres :
+(À mettre à jour avec les horodatages exacts générés dans video/output/savor-tutoriel-fr.chapters.txt)
+00:00 Introduction
+00:?? Premier lancement et accueil
+00:?? Domaines, leçons et quiz
+01:?? Les situations pratiques
+02:?? Consulter au quotidien
+03:?? Suivre et réviser
+03:?? Réglages et mode hors ligne

@@ -27,10 +27,10 @@ function Toggle({ label, checked, onChange }: { label: string; checked: boolean;
   );
 }
 
-function Seg<T extends string>({ label, value, options, onChange }: { label: string; value: T; options: [T, string][]; onChange: (v: T) => void }) {
+function Seg<T extends string>({ label, value, options, onChange, demoIdPrefix }: { label: string; value: T; options: [T, string][]; onChange: (v: T) => void; demoIdPrefix?: string }) {
   return (
     <div role="radiogroup" aria-label={label} className="seg">
-      {options.map(([v, l]) => <button key={v} type="button" role="radio" aria-checked={value === v} onClick={() => onChange(v)}>{l}</button>)}
+      {options.map(([v, l]) => <button key={v} type="button" data-demo-id={demoIdPrefix ? `${demoIdPrefix}-${v}` : undefined} role="radio" aria-checked={value === v} onClick={() => onChange(v)}>{l}</button>)}
     </div>
   );
 }
@@ -87,7 +87,7 @@ export default function SettingsPage() {
         <div className="setting-group">
           <div className="setting-row">
             <label className="setting-label" htmlFor="display-name"><strong>Prénom (facultatif)</strong><span>Pour le message d’accueil. Il reste sur cet appareil.</span></label>
-            <input id="display-name" className="input" style={{ maxWidth: '16rem' }} maxLength={40} autoComplete="off" value={s.displayName} onChange={(e) => set({ displayName: e.target.value })} />
+            <input id="display-name" data-demo-id="settings-name" className="input" style={{ maxWidth: '16rem' }} maxLength={40} autoComplete="off" value={s.displayName} onChange={(e) => set({ displayName: e.target.value })} />
           </div>
           <Row label="Niveau de travail" desc="Oriente les recommandations de l’accueil. Rien n’est verrouillé.">
             <select aria-label="Niveau de travail" className="select" style={{ maxWidth: '14rem' }} value={s.preferredLevel} onChange={(e) => set({ preferredLevel: e.target.value as UserSettings['preferredLevel'] })}>
@@ -104,10 +104,10 @@ export default function SettingsPage() {
       <section className="stack gap-s"><h2 className="eyebrow muted">Lecture</h2>
         <div className="setting-group">
           <Row label="Taille du texte" desc="S’applique à toute l’application.">
-            <Seg<FontScale> label="Taille du texte" value={s.fontSize} options={[['normal', 'Normale'], ['large', 'Grande'], ['xlarge', 'Très grande']]} onChange={(v) => set({ fontSize: v })} />
+            <Seg<FontScale> label="Taille du texte" demoIdPrefix="settings-fontsize" value={s.fontSize} options={[['normal', 'Normale'], ['large', 'Grande'], ['xlarge', 'Très grande']]} onChange={(v) => set({ fontSize: v })} />
           </Row>
           <Row label="Thème" desc="Papier le jour, encre la nuit.">
-            <Seg<ThemeSetting> label="Thème" value={s.theme} options={[['light', 'Clair'], ['dark', 'Sombre'], ['system', 'Système']]} onChange={(v) => set({ theme: v })} />
+            <Seg<ThemeSetting> label="Thème" demoIdPrefix="settings-theme" value={s.theme} options={[['light', 'Clair'], ['dark', 'Sombre'], ['system', 'Système']]} onChange={(v) => set({ theme: v })} />
           </Row>
           <Row label="Déplier le détail des règles" desc="Afficher d’emblée le « pourquoi », le « quand » et les exceptions de chaque règle.">
             <Toggle label="Déplier le détail des règles" checked={s.expandRuleDetails} onChange={(v) => set({ expandRuleDetails: v })} />
@@ -126,7 +126,7 @@ export default function SettingsPage() {
         </div>
       </section>
 
-      <section className="stack gap-s"><h2 className="eyebrow muted">Hors ligne et installation</h2>
+      <section className="stack gap-s" data-demo-id="settings-offline"><h2 className="eyebrow muted">Hors ligne et installation</h2>
         <div className="setting-group">
           <Row label="Disponibilité hors ligne" desc={sw ? 'Tous les contenus sont enregistrés sur cet appareil : leçons, quiz et recherche fonctionnent sans réseau.' : 'L’enregistrement hors ligne n’est pas encore actif sur ce navigateur.'}>
             <span className="tag">{online ? 'En ligne' : 'Hors ligne'}{sw ? ' · prêt' : ''}</span>
@@ -147,7 +147,7 @@ export default function SettingsPage() {
       <section className="stack gap-s"><h2 className="eyebrow muted">Mes données</h2>
         <div className="setting-group">
           <Row label="Exporter ma progression" desc="Un fichier de vos lectures, résultats, favoris et réglages.">
-            <button type="button" className="btn btn-secondary" onClick={doExport}><Export aria-hidden="true" />Exporter</button>
+            <button type="button" className="btn btn-secondary" data-demo-id="settings-export" onClick={doExport}><Export aria-hidden="true" />Exporter</button>
           </Row>
           <Row label="Restaurer une sauvegarde" desc="Remplace les données de cet appareil par celles d’un fichier exporté.">
             <button type="button" className="btn btn-secondary" onClick={() => fileRef.current?.click()}><UploadSimple aria-hidden="true" />Importer</button>
@@ -164,7 +164,7 @@ export default function SettingsPage() {
       </section>
 
       <section className="stack gap-xs small">
-        <Link to="/systeme">Paramètres système et mises à jour</Link>
+        <Link to="/systeme" data-demo-id="settings-system-link">Paramètres système et mises à jour</Link>
         <Link to="/presentation">Présentation de l’ouvrage</Link>
         <Link to="/a-propos">À propos et sources</Link>
         <Link to="/mentions-legales">Mentions légales</Link>

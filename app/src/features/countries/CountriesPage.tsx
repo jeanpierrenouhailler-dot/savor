@@ -40,7 +40,7 @@ export default function CountriesPage() {
       {rows.length === 0 && <Empty title="Aucun pays ne correspond." />}
       <div className="grid-wide">
         {rows.map((c) => (
-          <Link key={c.id} to={`/culture/${c.slug}`} className="card-link">
+          <Link key={c.id} to={`/culture/${c.slug}`} data-demo-id={`country-card-${c.slug}`} className="card-link">
             <span className="eyebrow">{c.region}</span>
             <span className="card-title" style={{ fontSize: '1.875rem' }}>{c.name}</span>
             <span className="small muted" style={{ flex: 1 }}>{c.intro}</span>

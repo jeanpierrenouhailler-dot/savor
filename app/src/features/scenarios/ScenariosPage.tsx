@@ -23,7 +23,7 @@ export default function ScenariosPage() {
       <PageHead eyebrow="Situations pratiques" title="Que feriez-vous ?" sage lead="Des situations réalistes, où l’on choisit puis où l’on comprend. Certaines se ramifient : votre décision change la suite." />
       <div className="grid-3">
         <label className="stack gap-xs"><span className="field-label">Domaine</span>
-          <select className="input" value={domain} onChange={(e) => setDomain(e.target.value)}>
+          <select className="input" data-demo-id="scenarios-domain" value={domain} onChange={(e) => setDomain(e.target.value)}>
             <option value="all">Tous les domaines</option>
             {domains.map((d) => <option key={d.id} value={d.id}>{d.shortTitle}</option>)}
           </select>
@@ -41,7 +41,7 @@ export default function ScenariosPage() {
         {rows.map((s) => {
           const r = data.scenarios[s.id];
           return (
-            <Link key={s.id} to={`/situations/${s.id}`} className="card-link">
+            <Link key={s.id} to={`/situations/${s.id}`} className="card-link" data-demo-id={`scenario-card-${s.id}`}>
               <div className="row-between" style={{ width: '100%' }}><LevelBadge level={s.level} /><span className="xsmall muted">{getDomain(s.domainId)?.shortTitle}</span></div>
               <div className="card-title">{s.title}</div>
               <div className="small muted" style={{ flex: 1 }}>{s.description}</div>

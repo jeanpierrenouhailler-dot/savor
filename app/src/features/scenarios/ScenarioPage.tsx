@@ -61,7 +61,7 @@ export default function ScenarioPage() {
       </header>
 
       {decisions.length === 0 || decisions[0].stepId === step.id ? (
-        <section className="context-card">
+        <section className="context-card" data-demo-id="scenario-context">
           <div className="eyebrow muted row" style={{ gap: '.5rem' }}><MapPinLine size={16} aria-hidden="true" />Le contexte</div>
           <p className="context-text">{scenario.context}</p>
           {scenario.characters.length > 0 && <p className="small"><strong>Personnages :</strong> {scenario.characters.join(' · ')}</p>}
@@ -78,6 +78,7 @@ export default function ScenarioPage() {
               <button
                 key={c.id}
                 type="button"
+                data-demo-id={`scenario-choice-${step.id}-${c.id}`}
                 role="radio"
                 aria-checked={sel}
                 disabled={!!decision}
@@ -94,20 +95,20 @@ export default function ScenarioPage() {
 
       {chosen && (
         <section className="stack gap-l" aria-live="polite">
-          <div className="card card-lg">
+          <div className="card card-lg" data-demo-id="scenario-feedback">
             <Verdict kind={verdictOf(chosen.score)} />
             <h3 className="h3">{chosen.feedbackTitle}</h3>
             <p style={{ lineHeight: 1.65 }}>{chosen.feedback}</p>
           </div>
           {chosen.nextStepId ? (
             <div>
-              <button type="button" className="btn btn-primary" onClick={() => { setStepId(chosen.nextStepId!); window.scrollTo(0, 0); }}>
+              <button type="button" className="btn btn-primary" data-demo-id="scenario-next" onClick={() => { setStepId(chosen.nextStepId!); window.scrollTo(0, 0); }}>
                 La suite<ArrowRight aria-hidden="true" />
               </button>
             </div>
           ) : (
             <>
-              <div className="pull" style={{ paddingBottom: 0, borderBottom: 0 }}>
+              <div className="pull" data-demo-id="scenario-rule" style={{ paddingBottom: 0, borderBottom: 0 }}>
                 <div className="eyebrow">La règle en jeu</div>
                 <p className="rule-quote">{scenario.rule}</p>
                 {scenario.nuance && <p><strong style={{ color: 'var(--ink)' }}>Nuance —</strong> {scenario.nuance}</p>}

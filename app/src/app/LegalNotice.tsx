@@ -116,7 +116,7 @@ export function FirstLaunchNotice() {
 
   return (
     <div className="modal-backdrop">
-      <div className="modal" role="dialog" aria-modal="true" aria-labelledby="legal-title" onKeyDown={onKey}>
+      <div className="modal" data-demo-id="onboarding-modal" role="dialog" aria-modal="true" aria-labelledby="legal-title" onKeyDown={onKey}>
         <div className="modal-head stack gap-s">
           {current === 'welcome' && <Logo size={64} />}
           <h2 id="legal-title" className="h3">{title}</h2>
@@ -130,7 +130,7 @@ export function FirstLaunchNotice() {
           {details ? <LegalContent /> : onLegal ? (
             <div className="stack gap-s">
               {legalNotice.shortWarning.map((p, i) => <p key={i}>{p}</p>)}
-              <label className="onboarding-accept">
+              <label className="onboarding-accept" data-demo-id="onboarding-accept">
                 <input ref={checkbox} type="checkbox" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} />
                 <span>J’ai lu cet avertissement et je comprends que l’éditeur n’est pas responsable des données fournies dans l’application.</span>
               </label>
@@ -153,14 +153,14 @@ export function FirstLaunchNotice() {
               {details ? 'Revenir à l’avertissement' : 'Voir les détails'}
             </button>
           ) : (
-            <button type="button" className="btn-link" onClick={() => setStep(STEPS.length - 1)}>Passer la présentation</button>
+            <button type="button" className="btn-link" data-demo-id="onboarding-skip" onClick={() => setStep(STEPS.length - 1)}>Passer la présentation</button>
           )}
           {onLegal ? (
-            <button ref={primary} type="button" className="btn btn-primary" disabled={!accepted} onClick={() => acknowledgeLegal(LEGAL_NOTICE_VERSION)}>
+            <button ref={primary} type="button" className="btn btn-primary" data-demo-id="onboarding-confirm" disabled={!accepted} onClick={() => acknowledgeLegal(LEGAL_NOTICE_VERSION)}>
               J’ai compris
             </button>
           ) : (
-            <button ref={primary} type="button" className="btn btn-primary" onClick={() => setStep(step + 1)}>Continuer</button>
+            <button ref={primary} type="button" className="btn btn-primary" data-demo-id="onboarding-next" onClick={() => setStep(step + 1)}>Continuer</button>
           )}
         </div>
       </div>

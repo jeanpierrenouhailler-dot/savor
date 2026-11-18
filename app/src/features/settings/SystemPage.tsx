@@ -66,7 +66,7 @@ export default function SystemPage() {
         </dl>
       </section>
 
-      <section className="stack gap-s"><h2 className="eyebrow muted">Mises à jour</h2>
+      <section className="stack gap-s" data-demo-id="system-updates"><h2 className="eyebrow muted">Mises à jour</h2>
         <div className="setting-group">
           <div className="setting-row">
             <div className="setting-label"><strong>État</strong><span role="status" data-testid="update-status">{STATUS[phase]}</span></div>
@@ -92,7 +92,7 @@ export default function SystemPage() {
         <div className="setting-group">
           <div className="setting-row">
             <div className="setting-label"><strong>Installer l’application</strong><span>Une icône sur votre écran d’accueil ou votre bureau, et un accès sans connexion.</span></div>
-            <InstallButton />
+            <InstallButton demoId="system-install" />
           </div>
           <div className="setting-row">
             <div className="setting-label"><strong>Accueil et avertissement</strong><span>Revoir la présentation de l’application et l’avertissement du premier lancement.</span></div>

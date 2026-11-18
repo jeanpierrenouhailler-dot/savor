@@ -43,7 +43,7 @@ export function MainMenu({ onClose }: { onClose: () => void }) {
             <div key={group.title} className="drawer-group">
               <div className="eyebrow muted drawer-title">{group.title}</div>
               {group.items.map((item) => (
-                <NavLink key={item.to} to={item.to} end={item.end} replace className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}>
+                <NavLink key={item.to} to={item.to} end={item.end} replace data-demo-id={`menu-${item.to === '/' ? 'accueil' : item.to.slice(1).replace(/\//g, '-')}`} className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}>
                   <item.icon size={19} aria-hidden="true" />{item.label}
                 </NavLink>
               ))}

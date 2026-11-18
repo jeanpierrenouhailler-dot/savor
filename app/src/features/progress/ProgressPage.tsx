@@ -36,11 +36,11 @@ export default function ProgressPage() {
   return (
     <div className="stack gap-2xl">
       <PageHead eyebrow="Ma progression" title="Votre carnet de lecture" lead="Ce que vous avez lu, pratiqué et vérifié. Aucun classement, aucune série à tenir : seulement de quoi savoir où reprendre." />
-      <dl className="stat-row" style={{ margin: 0 }}>
+      <dl className="stat-row" data-demo-id="progress-stats" style={{ margin: 0 }}>
         {stats.map(([v, l]) => <div key={l}><dt>{l}</dt><dd>{v}</dd></div>)}
       </dl>
 
-      <section className="stack gap-m">
+      <section className="stack gap-m" data-demo-id="progress-table">
         <div className="row-between"><h2 className="h2">Par domaine et par niveau</h2><span className="small muted">Leçons terminées sur leçons rédigées</span></div>
         <div className="table-wrap">
           <table className="table" style={{ minWidth: '36rem' }}>
@@ -69,7 +69,7 @@ export default function ProgressPage() {
       </section>
 
       <section className="grid-2">
-        <Link className="banner-link" to="/revisions">
+        <Link className="banner-link" data-demo-id="progress-review-link" to="/revisions">
           <ListChecks size={28} style={{ color: 'var(--gold-deep)', flex: 'none' }} aria-hidden="true" />
           <span className="stack" style={{ flex: 1, gap: '.125rem' }}>
             <span className="eyebrow">À revoir</span>
@@ -89,7 +89,7 @@ export default function ProgressPage() {
       </section>
 
       <section className="grid-2" style={{ alignItems: 'start' }}>
-        <div className="stack gap-m">
+        <div className="stack gap-m" data-demo-id="progress-activity">
           <h2 className="h2">Activité récente</h2>
           {data.activity.length === 0 && <p className="muted">Rien pour l’instant. Votre historique apparaîtra ici.</p>}
           <ol className="stack">

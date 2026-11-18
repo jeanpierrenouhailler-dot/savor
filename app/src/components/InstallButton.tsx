@@ -43,13 +43,13 @@ function InstallHelp({ onClose }: { onClose: () => void }) {
 }
 
 /** Installe en un geste si le navigateur le permet ; sinon, explique comment faire sur cet appareil. */
-export function InstallButton({ variant = 'button' }: { variant?: 'button' | 'menu' }) {
+export function InstallButton({ variant = 'button', demoId }: { variant?: 'button' | 'menu'; demoId?: string }) {
   const { installed, canPrompt } = useInstallState();
   const [help, setHelp] = useState(false);
 
   if (installed) {
     if (variant === 'menu') return null;
-    return <span className="tag"><CheckCircle size={16} weight="fill" aria-hidden="true" /> Déjà installée</span>;
+    return <span className="tag" data-demo-id={demoId}><CheckCircle size={16} weight="fill" aria-hidden="true" /> Déjà installée</span>;
   }
 
   const onClick = () => {
@@ -59,7 +59,7 @@ export function InstallButton({ variant = 'button' }: { variant?: 'button' | 'me
 
   return (
     <>
-      <button type="button" className={variant === 'menu' ? 'nav-item' : 'btn btn-secondary'} onClick={onClick}>
+      <button type="button" data-demo-id={demoId} className={variant === 'menu' ? 'nav-item' : 'btn btn-secondary'} onClick={onClick}>
         <DownloadSimple size={19} aria-hidden="true" />Installer l’application
       </button>
       {help && <InstallHelp onClose={() => setHelp(false)} />}

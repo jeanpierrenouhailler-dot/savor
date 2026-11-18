@@ -93,7 +93,7 @@ export default function ReviewPage() {
           </div>
         </div>
       )}
-      <div className="grid-wide">
+      <div className="grid-wide" data-demo-id="review-modes">
         {modes.map((m) => (
           <section key={m.title} className="card">
             <m.icon size={24} style={{ color: 'var(--gold-deep)' }} aria-hidden="true" />
@@ -111,7 +111,7 @@ export default function ReviewPage() {
         </section>
       </div>
       <section className="grid-2" style={{ alignItems: 'start' }}>
-        <div className="stack gap-s">
+        <div className="stack gap-s" data-demo-id="review-completed">
           <h2 className="h2">Leçons terminées</h2>
           {completed.length === 0 && <Empty title="Aucune leçon terminée pour l’instant."><Link to="/apprendre">Parcourir les domaines</Link></Empty>}
           <ul className="stack">
@@ -123,7 +123,7 @@ export default function ReviewPage() {
             ))}
           </ul>
         </div>
-        <div className="stack gap-s">
+        <div className="stack gap-s" data-demo-id="review-fav-rules">
           <h2 className="h2">Règles favorites</h2>
           {favRules.length === 0 && <p className="muted">Marquez une règle d’un signet, dans une leçon, pour la revoir ici.</p>}
           <ul className="stack">
